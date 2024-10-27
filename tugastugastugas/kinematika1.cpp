@@ -33,7 +33,7 @@ std::vector<double> calculateWheelSpeeds(const std::string &name, double Vx, dou
 
     for (double angle : *angles) {
         double angleRad = angle * M_PI / 180.0;
-        double wheelSpeed = (std::sin(angleRad) * Vx + std::cos(angleRad) * Vy + 3*omega * radius) / wheelRadius;
+        double wheelSpeed = (std::sin(angleRad) * Vy + std::cos(angleRad) * Vx + omega * radius) / wheelRadius;
         speeds.push_back(wheelSpeed);
     }
 
@@ -56,9 +56,8 @@ int main() {
         std::cin >> command;
         if (command == "GAS") break;
 
-        Vx = std::stod(command);
-        //std::cout << Vx << std::endl;
-        std::cin >> Vy >> omega;
+        Vy = std::stod(command);
+        std::cin >> Vx >> omega;
 
         std::vector<double> wheelSpeeds = calculateWheelSpeeds(name, Vx, Vy, omega);
 
